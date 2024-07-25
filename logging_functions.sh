@@ -1,18 +1,22 @@
 #!/bin/bash
 
+if [ -z "$LOG_NAME" ]; then
+    LOG_NAME="log"
+fi
+
 # Define log file
 TIMESTAMP=$(date +"%s")
 if [ -n "$LOG_FILE_PATH" ] && [ -d "$LOG_FILE_PATH" ]; then
     LOG_FILE="${LOG_FILE_PATH}${LOG_NAME}_${TIMESTAMP}.log"
 else
-    echo "Warning: Invalid or undefined LOG_FILE_PATH. Using default log file path." >&2
+    echo "$(date +"%Y-%m-%d %H:%M:%S") [WARNING] : Invalid or undefined LOG_FILE_PATH. Using default log file path." >&2
     LOG_FILE="${TIMESTAMP}.log"
-    echo "Default log file path: $(pwd)/$(basename "$LOG_FILE")" >&2
+    echo "$(date +"%Y-%m-%d %H:%M:%S") [INFO] : Default log file path: $(pwd)/$(basename "$LOG_FILE")" >&2
 fi
 
 # Log levels
 INFO="INFO"
-WARN="WARN"
+WARN="WARNING"
 ERROR="ERROR"
 DEBUG="DEBUG"
 
