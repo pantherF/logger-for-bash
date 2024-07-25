@@ -9,9 +9,7 @@ TIMESTAMP=$(date +"%s")
 if [ -n "$LOG_FILE_PATH" ] && [ -d "$LOG_FILE_PATH" ]; then
     LOG_FILE="${LOG_FILE_PATH}${LOG_NAME}_${TIMESTAMP}.log"
 else
-    echo "$(date +"%Y-%m-%d %H:%M:%S") [WARNING] : Invalid or undefined LOG_FILE_PATH. Using default log file path." >&2
-    LOG_FILE="${TIMESTAMP}.log"
-    echo "$(date +"%Y-%m-%d %H:%M:%S") [INFO] : Default log file path: $(pwd)/$(basename "$LOG_FILE")" >&2
+    echo "$(date +"%Y-%m-%d %H:%M:%S") [WARNING] : No logfile defined. Logs will not be written to a file." >&2
 fi
 
 # Log levels
@@ -25,7 +23,7 @@ log() {
     local LEVEL=$1
     local MESSAGE=$2
     local TIMESTAMP=$(date +"%Y-%m-%d %H:%M:%S")
-    echo -e "$TIMESTAMP [$LEVEL] : $MESSAGE" | tee -a $LOG_FILE
+    echo -e "$TIMESTAMP [$LEVEL] : $MESSAGE " | tee -a $LOG_FILE
 }
 
 # Function to execute commands and log their output
