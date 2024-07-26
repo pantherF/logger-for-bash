@@ -5,7 +5,7 @@ if [ -z "$LOG_NAME" ]; then
 fi
 
 # Define log file
-TIMESTAMP=$(date +"%s")
+TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
 if [ -n "$LOG_FILE_PATH" ] && [ -d "$LOG_FILE_PATH" ]; then
     LOG_FILE="${LOG_FILE_PATH}${LOG_NAME}_${TIMESTAMP}.log"
 else
