@@ -46,10 +46,10 @@ log_and_run() {
             fi
         done
     else
-        if $CMD; then
+        if [ $STATUS -eq 0 ]; then
             log $INFO "Command '$CMD' executed successfully."
         else
-            log $ERROR "Failed to execute command '$CMD' ."
+            log $ERROR "Failed to execute command '$CMD'."
         fi
     fi
 
